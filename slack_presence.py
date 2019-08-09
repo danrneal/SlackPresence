@@ -65,5 +65,4 @@ def scheduler():
 
 
 if __name__ == '__main__':
-    set_slack_presence('away')
     scheduler()
