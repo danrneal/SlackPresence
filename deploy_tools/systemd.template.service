@@ -7,7 +7,7 @@ User=USER
 WorkingDirectory=/home/USER/slack-presence
 EnvironmentFile=/home/USER/slack-presence/.env
 
-ExecStart=/home/USER/slack-presence/slack_presence.py
+ExecStart=/home/USER/slack-presence/env/bin/python3 slack_presence.py
 
 [Install]
 WantedBy=multi-user.target
