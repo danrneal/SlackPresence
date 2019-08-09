@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn server for slack-presence
+
+[Service]
+Restart=on-failure
+User=USER
+WorkingDirectory=/home/USER/slack-presence
+EnvironmentFile=/home/USER/slack-presence/.env
+
+ExecStart=/home/USER/slack-presence/env/bin/gunicorn --bind unix:/tmp/slack-presence.socket slack_presence
+
+[Install]
+WantedBy=multi-user.target
