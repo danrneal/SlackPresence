@@ -7,7 +7,7 @@ User=USER
 WorkingDirectory=/home/USER/slack-presence
 EnvironmentFile=/home/USER/slack-presence/.env
 
-ExecStart=/home/USER/slack-presence/env/bin/gunicorn --bind unix:/tmp/slack-presence.socket slack_presence
+ExecStart=/home/USER/slack-presence/slack_presence.py
 
 [Install]
 WantedBy=multi-user.target

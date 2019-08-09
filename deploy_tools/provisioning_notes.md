@@ -14,7 +14,7 @@ eg, on Ubuntu:
 
 ## Systemd service
 
-* see gunicorn-systemd.template.service
+* see systemd.template.service
 * replace USER with, e.g., user
 
 ## Folder structure:
