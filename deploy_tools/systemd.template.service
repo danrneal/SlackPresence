@@ -1,5 +1,5 @@
 [Unit]
-Description=Gunicorn server for slack-presence
+Description=slack-presence
 
 [Service]
 Restart=on-failure
