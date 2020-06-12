@@ -11,9 +11,9 @@ class FunctionalTest(unittest.TestCase):
         url = "https://slack.com/api/users.getPresence"
         url += f"?token={slack_presence.API_TOKEN}"
         response = requests.request("GET", url)
-        if not response.ok:
+        if not json.loads(response.text)['ok']:
             print(response.text)
-            response.raise_for_status()
+            raise requests.HTTPError(403)
         presence = json.loads(response.text)['presence']
         if presence == 'active':
             presence = 'auto'

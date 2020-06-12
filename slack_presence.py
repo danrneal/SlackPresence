@@ -1,3 +1,4 @@
+import json
 import os
 import requests
 import schedule
@@ -13,9 +14,9 @@ def set_slack_presence(presence):
     url += f"?token={API_TOKEN}"
     url += f"&presence={presence}"
     response = requests.request("POST", url)
-    if not response.ok:
+    if not json.loads(response.text)['ok']:
         print(response.text)
-        response.raise_for_status()
+        raise requests.HTTPError(403)
 
 
 def scheduler():
