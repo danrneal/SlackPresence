@@ -6,55 +6,91 @@ This is a script meant to automatically manage your presence in Slack using Slac
 
 Set-up a virtual environment and activate it:
 
-```shell
-python3 -m venv venv
-source venv/bin/activate
+```bash
+python3 -m venv env
+source env/bin/activate
 ```
 
-You should see (venv) before your command prompt now. (You can type `deactivate` to exit the virtual environment any time.)
+You should see (env) before your command prompt now. (You can type `deactivate` to exit the virtual environment any time.)
 
 Install the requirements:
 
-```shell
+```bash
+pip install -U pip
 pip install -r requirements.txt
 ```
 
+Obtain a Slack API key [here](https://api.slack.com/apps).
+
+- Configure the key in the "Permissions" option
+- Under "Scopes -> User Token Scopes" include `users:write`
+- Install your app to the desired workspace
+- Copy the "OAuth Access Token" in the "Permissions option (it should start with "xoxp-")
+
+Set the global variables `START_TIME` and `QUITTING_TIME` in `slack_presence.py`.
+
 Set up your environment variables:
 
-```shell
+```bash
 touch .env
 echo SLACK_API_TOKEN="XXX" >> .env
 ```
 
 ## Usage
 
-Make sure you are in the virtual environment (you should see (venv) before your command prompt). If not `source /venv/bin/activate` to enter it.
+Make sure you are in the virtual environment (you should see (env) before your command prompt). If not `source /env/bin/activate` to enter it.
 
 Make sure .env variables are set:
 
-```shell
+```bash
 set -a; source .env; set +a
 ```
 
-Then set the global variables START_TIME and QUITTING_TIME in slack_presence.py
+Then run the script:
 
-```shell
-Usage: scraper.py
+```bash
+Usage: slack_presence.py
+```
+
+## Deployment
+
+For provisioning a new server see `deploy_tools/provisioning_notes.md`.
+
+Set the host of your new server as an environment variable:
+
+```bash
+export HOST="YOU@HOST.COM"
+```
+
+You can deploy automatically to your new server using the following command:
+
+```bash
+fab deploy:host=$HOST
 ```
 
 ## Testing Suite
 
-This repository contains a test suite consisting of unit tests.
+This repository contains a test suite consisting of functional tests and unit tests.
+
+### Functional Tests
+
+These test the program from the outside, from a user's point of view and are also known as Acceptance Tests or End-to-End Tests. You can run them with the following command:
+
+```bash
+python3 -m unittest discover functional_tests
+```
+
+#### _Note: These tests require that the Slack API Token also have the scope `users:read`_
 
 ### Unit Tests
 
 These test the program from the inside, from the developer's point of view. You can run them with the following command:
 
-```shell
-python3 -m unittest discover tests/
+```bash
+python3 -m unittest discover tests
 ```
 
-## A comment on TDD
+### A comment on TDD
 
 This project was done following Test-Driven Development principles where the starting point is a failing test. My process was to write a unit test to define how I wanted the code to behave. That is the point where I wrote the "actual" code to get the unit tests to pass.
 
@@ -62,4 +98,4 @@ While this may seem unnecessary for a program of such a small size and may seem 
 
 ## License
 
-Udacity Link Scraper is licensed under the [MIT license](https://github.com/danrneal/slack-presence/blob/master/LICENSE).
+Slack Presence is licensed under the [MIT license](https://github.com/danrneal/slack-presence/blob/master/LICENSE).
