@@ -1,7 +1,6 @@
-Provisioning a new site
-=======================
+# Provisioning a new site
 
-## Required packages:
+## Required packages
 
 * Python 3
 * virtualenv + pip
@@ -17,12 +16,11 @@ eg, on Ubuntu:
 * see systemd.template.service
 * replace USER with, e.g., user
 
-## Folder structure:
+## Folder structure
 
 Assume we have a user account at /home/username
 
-/home/username
-
+    /home/username
     └── slack-presence
         ├── .env
         ├── env
