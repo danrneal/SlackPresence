@@ -1,7 +1,4 @@
-venv
-env
-.idea
-__pycache__
+__pycache__/
+*.pyc
 .env
-.vscode
-.history
+env/
